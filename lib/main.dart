@@ -1,4 +1,6 @@
 import 'package:bloc_phone_auth/cubit/auth_cubit.dart';
+import 'package:bloc_phone_auth/cubit/auth_state.dart';
+import 'package:bloc_phone_auth/screens/home_screen.dart';
 import 'package:bloc_phone_auth/screens/sign_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,18 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(useMaterial3: true),
-        home: SignInScreen(),
+        home: BlocBuilder<AuthCubit, AuthState>(
+          buildWhen: (previous, current) {
+            return previous is AuthInitial;
+          },
+          builder: (context, state) {
+            if (state is AuthLoggedInState) {
+              return const HomeScreen();
+            } else {
+              return SignInScreen();
+            }
+          },
+        ),
       ),
     );
   }

@@ -54,15 +54,29 @@ class OTPScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const HomeScreen()));
+                } else if (state is AuthErrorState) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(state.error),
+                    duration: const Duration(seconds: 5),
+                  ));
                 }
               },
               builder: (context, state) {
+                if (state is AuthLoadingState) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
                 return SizedBox(
                   width: double.infinity,
                   child: CupertinoButton(
                       color: Colors.blue,
                       child: const Text('Send OTP'),
-                      onPressed: () {}),
+                      onPressed: () {
+                        BlocProvider.of<AuthCubit>(context)
+                            .verifyOTP(phoneNumber.text);
+                      }),
                 );
               },
             )

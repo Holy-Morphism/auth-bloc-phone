@@ -4,7 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  AuthCubit() : super(AuthInitial());
+  AuthCubit() : super(AuthInitial()) {
+    User? currentUser = _auth.currentUser;
+    if (currentUser != null) {
+      //Logged in
+      emit(AuthLoggedInState(currentUser));
+    } else {
+      emit(AuthLoggedOutState());
+    }
+  }
 
   String? _verficationId;
 
@@ -43,5 +51,11 @@ class AuthCubit extends Cubit<AuthState> {
     } on FirebaseAuthException catch (e) {
       emit(AuthErrorState(e.message.toString()));
     }
+  }
+
+  void signOut() async {
+    emit(AuthLoadingState());
+    await _auth.signOut();
+    emit(AuthLoggedOutState());
   }
 }
