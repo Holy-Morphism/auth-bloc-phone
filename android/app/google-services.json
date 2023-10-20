@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "539441226227",
+    "project_id": "blocphoneauth454",
+    "storage_bucket": "blocphoneauth454.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539441226227:android:c37f0afc6c5561ddd5b286",
+        "android_client_info": {
+          "package_name": "com.example.bloc_phone_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "539441226227-3e3qjagc1fv6vcfbpl1r4h9egb8rhe95.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bloc_phone_auth",
+            "certificate_hash": "9d96de39f07b756f02a5957de406b61e9b4ac293"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIPN-uedHmHlg_0otSUPN8YFKs8DnrHks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
